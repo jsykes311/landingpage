@@ -3,34 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Submit Form</title>
-    <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
-    <script type="text/javascript">
-        (function(){
-            emailjs.init("92Mw9HKgaWYrzxy8w");  // Your Public API key
-        })();
-        
-        function sendEmail(e) {
-            e.preventDefault();
-
-            const website = e.target.website.value;
-            const websitePattern = /^(https?:\/\/)?(www\.)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/;
-
-            if (!websitePattern.test(website) && website !== "") {
-                alert('Please enter a valid website URL.');
-                return;
-            }
-
-            emailjs.sendForm('service_ez5y40a', 'template_251aj86', e.target)
-            .then((result) => {
-                alert('Thank you! Someone from our team will reach out to you directly');
-                location.reload();  // Reload the page after submission
-            }, (error) => {
-                alert('Oops! Something went wrong.');
-                console.error(error);
-            });
-        }
-    </script>
+    <title>Your Page Title</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -82,9 +55,17 @@
         input[type="submit"]:hover {
             background-color: #0056b3; /* Darker shade for hover */
         }
+        .message {
+            text-align: center;
+            color: green;
+            margin-top: 20px;
+            display: none; /* Hide by default */
+        }
     </style>
 </head>
 <body>
+    <h1>Welcome to My GitHub Page!</h1>
+    <p>This is my custom content.</p>
 
     <div class="container">
         <img src="https://microf.com/wp-content/uploads/2023/04/microf-logo-glow.png" alt="Microf Logo">
@@ -107,7 +88,38 @@
 
             <input type="submit" value="Submit">
         </form>
+        <div class="message" id="successMessage">Thank you for your submission!</div> <!-- Success message -->
     </div>
+
+    <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function(){
+            emailjs.init("92Mw9HKgaWYrzxy8w");  // Your Public API key
+        })();
+        
+        function sendEmail(e) {
+            e.preventDefault();
+
+            const website = e.target.website.value;
+            const websitePattern = /^(https?:\/\/)?(www\.)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/;
+
+            if (!websitePattern.test(website) && website !== "") {
+                alert('Please enter a valid website URL.');
+                return;
+            }
+
+            emailjs.sendForm('service_ez5y40a', 'template_251aj86', e.target)
+            .then((result) => {
+                // Show success message instead of alert
+                document.getElementById('successMessage').style.display = 'block'; // Display message
+                document.getElementById('successMessage').innerText = 'Thank you for your submission!'; // Set your custom message
+                e.target.reset(); // Reset the form after submission
+            }, (error) => {
+                alert('Oops! Something went wrong.');
+                console.error(error);
+            });
+        }
+    </script>
 
 </body>
 </html>
