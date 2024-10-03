@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Page Title</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -19,14 +18,14 @@
             border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
-        h2 {
-            text-align: center;
-            color: #333;
-        }
         img {
             display: block;
             margin: 0 auto 20px;
             max-width: 150px; /* Adjust based on logo size */
+        }
+        h2 {
+            text-align: center;
+            color: #333;
         }
         label {
             font-weight: bold;
@@ -64,9 +63,6 @@
     </style>
 </head>
 <body>
-    <h1>Welcome to My GitHub Page!</h1>
-    <p>This is my custom content.</p>
-
     <div class="container">
         <img src="https://microf.com/wp-content/uploads/2023/04/microf-logo-glow.png" alt="Microf Logo">
         <h2>Submit Your Details</h2>
@@ -99,14 +95,6 @@
         
         function sendEmail(e) {
             e.preventDefault();
-
-            const website = e.target.website.value;
-            const websitePattern = /^(https?:\/\/)?(www\.)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/;
-
-            if (!websitePattern.test(website) && website !== "") {
-                alert('Please enter a valid website URL.');
-                return;
-            }
 
             emailjs.sendForm('service_ez5y40a', 'template_251aj86', e.target)
             .then((result) => {
